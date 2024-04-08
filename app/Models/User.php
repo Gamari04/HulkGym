@@ -30,6 +30,10 @@ class User extends Authenticatable
         'dateOfBirth',
         'status',
     ];
+    public function coach()
+    {
+        return $this->hasOne(Coach::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

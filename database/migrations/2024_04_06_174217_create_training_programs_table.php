@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('training_programs', function (Blueprint $table) {
             $table->id();
+            $table->string('description');
+            $table->string('title');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->unsignedBigInteger('coach_id');
+            $table->foreign('coach_id')->references('id')->on('coaches')->onDelete('cascade');
             $table->timestamps();
         });
     }
