@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,3 +23,7 @@ Route::get('login', [AuthController::class, 'LoginPage']);
 Route::get('register', [AuthController::class, 'RegisterPage']);
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register',[AuthController::class, 'register'])->name('register');
+
+
+Route::resource('users',UserController::class);
+Route::get('BannedUser/{id}', [UserController::class, 'BannedUser'])->name('BannedUser');
