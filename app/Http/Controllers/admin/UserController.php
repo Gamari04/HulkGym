@@ -22,7 +22,7 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('admin');
     }
-    public function edit($user)
+    public function edit(User $user)
     {
         return view('admin.users.edit',['user'=>$user]);
     }
