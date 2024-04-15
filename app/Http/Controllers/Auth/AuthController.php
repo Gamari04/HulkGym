@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
 
     public function RegisterPage(){
-        return view('register');
+        return view('Auth.register');
     }
     public function register(Request $request){
 
@@ -28,7 +28,7 @@ class AuthController extends Controller
         ]);
         Auth::login($user);
 
-        return redirect('name');
+        return redirect('/');
     }
 
     public function LoginPage(){
@@ -56,7 +56,7 @@ class AuthController extends Controller
             }
           
         }
-        return redirect('admin');
+        return redirect('/');
     }
 
     public function logout(Request $request){

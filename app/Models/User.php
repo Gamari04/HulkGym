@@ -29,10 +29,15 @@ class User extends Authenticatable
         'gender',
         'dateOfBirth',
         'status',
+        'coach_request_status',
     ];
     public function coach()
     {
         return $this->hasOne(Coach::class);
+    }
+    public function hasRole($roleName)
+    {
+        return $this->role->name === $roleName;
     }
 
     /**

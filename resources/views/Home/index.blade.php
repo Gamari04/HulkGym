@@ -82,7 +82,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="/">
                             <img src="images/VIRUS.png" alt="" class="mb-0" style="width: 100px; margin:0%;padding-top:0%;">
                         </a>
                     </div>
@@ -93,8 +93,9 @@
                             <li class="active"><a href="./index.html">Home</a></li>
                             <li><a href="./about-us.html">About Us</a></li>
                             <li><a href="./class-details.html">Classes</a></li>
-                            <li><a href="./services.html">Services</a></li>
+                            {{-- <li><a href="./services.html">Services</a></li> --}}
                             <li><a href="./team.html">Our Team</a></li>
+                            
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="./about-us.html">About us</a></li>
@@ -107,6 +108,22 @@
                                 </ul>
                             </li>
                             <li><a href="./contact.html">Contact</a></li>
+                            {{-- <li> <a href="#" class="primary-btn  btn-normal">Became Coach</a></li> --}}
+                            @if(auth()->user() && auth()->user()->hasRole('user'))
+                            
+                            <li class="nav-item">
+                                <form method="POST" action="{{ route('submit') }}" >
+                                    @csrf
+                                       <button type="submit" class="primary-btn  btn-normal">Became Coach</button>
+                                </form>
+                                @if (Session::has('status'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('status') }}
+                                </div>
+                            @endif
+                                
+                            </li>
+                            @endif
                         </ul>
                     </nav>
                 </div>
@@ -115,12 +132,21 @@
                         <div class="to-search search-switch">
                             <i class="fa fa-search"></i>
                         </div>
-                        <div class="to-social">
+                        {{-- <div class="to-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
                             <a href="#"><i class="fa fa-youtube-play"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
-                        </div>
+                        </div> --}}
+                        @if(auth()->check())
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                       <button class="primary-btn">Log Out</button>
+                    </form>
+@else
+<a href="{{ route('register') }}" class="primary-btn">Sign Up</a>
+@endif
+                        
                     </div>
                 </div>
             </div>
@@ -423,7 +449,7 @@
             <div class="row">
                 <div class="ts-slider owl-carousel">
                     <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-1.jpg">
+                        <div class="ts-item set-bg" data-setbg="images/hulka.jpg">
                             <div class="ts_text">
                                 <h4>Athart Rachel</h4>
                                 <span>Gym Trainer</span>
@@ -431,7 +457,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-2.jpg">
+                        <div class="ts-item set-bg" data-setbg="images/hulka2.jpg">
                             <div class="ts_text">
                                 <h4>Athart Rachel</h4>
                                 <span>Gym Trainer</span>
@@ -439,7 +465,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-3.jpg">
+                        <div class="ts-item set-bg" data-setbg="images/hulkfrends.jpg">
                             <div class="ts_text">
                                 <h4>Athart Rachel</h4>
                                 <span>Gym Trainer</span>
@@ -447,7 +473,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-4.jpg">
+                        <div class="ts-item set-bg" data-setbg="images/hulkKub.jpg">
                             <div class="ts_text">
                                 <h4>Athart Rachel</h4>
                                 <span>Gym Trainer</span>
@@ -455,7 +481,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-5.jpg">
+                        <div class="ts-item set-bg" data-setbg="images/huuulko.jpg">
                             <div class="ts_text">
                                 <h4>Athart Rachel</h4>
                                 <span>Gym Trainer</span>
@@ -463,7 +489,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="ts-item set-bg" data-setbg="img/team/team-6.jpg">
+                        <div class="ts-item set-bg" data-setbg="images/huuuulk.jpg" >
                             <div class="ts_text">
                                 <h4>Athart Rachel</h4>
                                 <span>Gym Trainer</span>

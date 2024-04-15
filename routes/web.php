@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,11 +23,18 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
+Route::get('/edit', function () {
+    return view('admin.category.edit');
+});
 Route::get('login', [AuthController::class, 'LoginPage']);
 Route::get('register', [AuthController::class, 'RegisterPage']);
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register',[AuthController::class, 'register'])->name('register');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::resource('users',UserController::class);
+Route::resource('categories',CategoryController::class);
+Route::post('submit', [UserController::class, 'submitCoachRequest'])->name('submit');
+
 Route::get('BannedUser/{id}', [UserController::class, 'BannedUser'])->name('BannedUser');

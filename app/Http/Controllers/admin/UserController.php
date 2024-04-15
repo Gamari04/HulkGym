@@ -7,7 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -34,11 +34,12 @@ class UserController extends Controller
     public function submitCoachRequest()
     {
         $user = Auth::user(); 
+    
         if ($user) {
             $user->update(['coach_request_status' => 'pending']);
-    
+            Session::flash('status', 'Votre demande pour devenir coach a été soumise avec succès. Elle sera traitée sous peu.');
         }
-
+       
         return redirect()->back();
     }
     public function showRequests()
