@@ -12,6 +12,7 @@
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
@@ -69,6 +70,7 @@
                     <a href="{{ route('users.index') }}" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>Users</a>
                     <a href="{{ route('categories.index') }}" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>Categories</a>
                     <a href="{{ route('coachRequest') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Coach Request</a>
+                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
                     <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
                     <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
@@ -208,47 +210,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)
-                                            <tr class="">
-                                                <th scope="row">{{ $user->id }}</th>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->role->name }}</td>
-                                                <td>
-                                                    @if ($user->status == 'Accepted')
-                                                        <a href="{{ route('BannedUser', $user->id) }}"><span
-                                                                class="badge bg-success">{{ $user->status }}</span></a>
-                                                    @else
-                                                        <span
-                                                            class="badge bg-danger text-dark">{{ $user->status }}</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <div class="row">
-                                                        <div class="col-2">
-                                                            <form action="{{ route('users.edit', $user->id) }}">
-                                                                @method('PUT')
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-default">
-                                                                    <lord-icon src="https://cdn.lordicon.com/ylvuooxd.json" trigger="hover" colors="primary:#ebe6ef,secondary:#f9c9c0,tertiary:#ffffff,quaternary:#f2e2d9" style="width:30px;height:30px"></lord-icon>
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                        <div class="col-2">
-                                                            <form action="{{ route('users.destroy', $user->id) }}" method="post">
-                                                                @method('DELETE')
-                                                                @csrf
-                                                                <button class="btn btn-default">
-                                                                    <lord-icon src="https://cdn.lordicon.com/wpyrrmcq.json" trigger="hover" colors="primary:#ffffff" style="width:30px;height:30px"></lord-icon>
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                
-
-                                            </tr>
-                                        @endforeach
+                                        @foreach ($requests as $request)
+          
+      
+    <tr>
+        <td>{{ $request->id}} </td>
+        <td>{{ $request->name}} </td>
+        <td>{{ $request->email}} </td>
+        <td><a href="{{ route('AcceptCoach',$request->id) }}" class="accept" data-toggle="modal"><i
+            class="material-icons" data-toggle="tooltip" title="Accept"
+            style="color: green;font-size: 30px;">check_circle</i>
+    </a>
+        <a href="{{ route('RejectCoach',$request->id) }}" class="reject" data-toggle="modal">
+            <i class="material-icons" data-toggle="tooltip" title="Reject" style="color: red;font-size: 30px;">cancel</i>
+        </a>
+    </td>
+    </tr> 
+    @endforeach
+ 
                                     </tbody>
                                 </table>
                             </div>
@@ -257,37 +236,7 @@
                 </div>
             </div>
             <!-- Table End -->
- <!-- Form Start -->
- <div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-sm-12 col-xl-6">
-            <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Basic Form</h6>
-                <form action="{{ route('users.update',$user->id) }}" method="POST"
-                    enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1"
-                            aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                </form>
-            </div>
-        </div>
-      
-    </div>
-</div>
-<!-- Form End -->
+
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">

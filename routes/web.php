@@ -23,8 +23,11 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
-Route::get('/edit', function () {
-    return view('admin.category.edit');
+Route::get('/about', function () {
+    return view('Home.about');
+});
+Route::get('/addProgram', function () {
+    return view('coach.addProgram');
 });
 Route::get('login', [AuthController::class, 'LoginPage']);
 Route::get('register', [AuthController::class, 'RegisterPage']);
@@ -36,5 +39,8 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('users',UserController::class);
 Route::resource('categories',CategoryController::class);
 Route::post('submit', [UserController::class, 'submitCoachRequest'])->name('submit');
+Route::get('showRequests', [UserController::class, 'showRequests'])->name('coachRequest');
+Route::get('AcceptRequests/{id}', [UserController::class, 'AcceptCoach'])->name('AcceptCoach');
+Route::get('RejectRequests/{id}', [UserController::class, 'RejectCoach'])->name('RejectCoach');
 
 Route::get('BannedUser/{id}', [UserController::class, 'BannedUser'])->name('BannedUser');
