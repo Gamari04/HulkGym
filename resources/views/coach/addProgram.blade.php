@@ -21,7 +21,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 
 
-   
+
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
@@ -93,28 +93,29 @@
                 </div>
                 <div class="col-lg-6">
                     <nav class="nav-menu">
-                        <ul>
-                            <li class="active"><a href="/">Home</a></li>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="./class-details.html">Classes</a></li>
-                            {{-- <li><a href="./services.html">Services</a></li> --}}
-                            <li><a href="./team.html">Our Team</a></li>
+                        @if (auth()->user() && auth()->user()->hasRole('coach'))
+                            <ul>
+                                <li class="active"><a href="/">Home</a></li>
 
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="/about">About us</a></li>
-                                    <li><a href="./class-timetable.html">Classes timetable</a></li>
-                                    <li><a href="./bmi-calculator.html">Bmi calculate</a></li>
-                                    <li><a href="./team.html">Our team</a></li>
-                                    <li><a href="./gallery.html">Gallery</a></li>
-                                    <li><a href="./blog.html">Our blog</a></li>
-                                    <li><a href="./404.html">404</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./contact.html">Contact</a></li>
-                            {{-- <li> <a href="#" class="primary-btn  btn-normal">Became Coach</a></li> --}}
+                                <li><a href="./class-details.html">My Programs</a></li>
 
-                        </ul>
+
+                                <li><a href="#">Pages</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/about">About us</a></li>
+                                        <li><a href="./class-timetable.html">Classes timetable</a></li>
+                                        <li><a href="./bmi-calculator.html">Bmi calculate</a></li>
+                                        <li><a href="./team.html">Our team</a></li>
+                                        <li><a href="./gallery.html">Gallery</a></li>
+                                        <li><a href="./blog.html">Our blog</a></li>
+                                        <li><a href="./404.html">404</a></li>
+                                    </ul>
+                                </li>
+
+                                <li> <a href="/addProgram" class="primary-btn  btn-normal">Add Program</a></li>
+
+                            </ul>
+                        @endif
                     </nav>
                 </div>
                 <div class="col-lg-3">
@@ -146,10 +147,10 @@
                             @if (auth()->check())
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button class="primary-btn">Log Out</button>
+                                    <button class="primary-btn rounded">Log Out</button>
                                 </form>
                             @else
-                                <a href="{{ route('register') }}" class="primary-btn">Sign Up</a>
+                                <a href="{{ route('register') }}" class="primary-btn rounded">Sign Up</a>
                             @endif
                         </div>
 
@@ -162,49 +163,59 @@
                 <i class="fa fa-bars"></i>
             </div>
         </div>
-    </header>
+    </header><br><br><br><br>
     <!-- Header End -->
-   
-    <main class="mt-5">
+
+    <main class="pt-5">
         <form action="addNewWiki" method="post" enctype="multipart/form-data"
             style="width: 100%; max-width: 60rem; " class="mx-auto ">
 
-            <h1 class="text-center pb-5 display-4 fs-3 fw-bold fst-italic ">
-                Add New Wiki
+            <h1 class="text-center pb-5 display-4 fs-3 fw-bold fst-italic text-primary">
+                Add New Program
             </h1>
 
             <div class="mb-3">
-                <label class="form-label">Wiki Title</label>
-                <input type="text" class="form-control border" placeholder="Enter a title" name="title">
+                <label class="form-label text-primary">Program Title :</label>
+                <input type="text" class="form-control " placeholder="Enter a title" name="title" style="border: 2px solid rgb(34, 139, 34);">
             </div>
 
-            <div class="mb-3">
-                <label for="content" class="form-label">Content:</label>
-                <textarea id="editor">
+            <div class="mb-3 bg-dark">
+                <label for="content" class="form-label text-primary">Description :</label>
+                <textarea id="editor" >
                    
                     
                 </textarea>
             </div>
-
             <div class="mb-3">
-                <label class="form-label"> Image </label>
-                <input type="file" class="form-control border" name="image">
+                <label for="content" class="form-label text-primary">Select a Category :</label>
+                <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" style="border: 2px solid rgb(34, 139, 34);">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
             </div>
+        
+                
+                <div class="mb-3">
+                    <label for="formFile" class="form-label text-primary">Choose a Pic</label>
+                    <input class="form-control bg-dark" type="file" id="formFile" style="border: 2px solid rgb(34, 139, 34);">
+                </div>
 
-            <div class="modal-footer">
+                <div class="modal-footer">
 
-                <button type="submit" class="btn btn-dark" name="addwiki">Add Wiki</button>
-            </div>
+                    <button type="submit" class="primary-btn rounded" name="addwiki">Add Program</button>
+                </div>
         </form>
 
     </main>
     <!-- Js Plugins -->
     <script>
         ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 
 
