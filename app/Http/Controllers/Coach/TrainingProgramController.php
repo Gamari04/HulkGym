@@ -7,6 +7,7 @@ use App\Models\TrainingProgram;
 use App\Http\Requests\StoreTrainingProgramRequest;
 use App\Http\Requests\UpdateTrainingProgramRequest;
 use App\Models\Category;
+use App\Models\Coach;
 
 class TrainingProgramController extends Controller
 {
@@ -15,9 +16,9 @@ class TrainingProgramController extends Controller
      */
     public function index()
     {
-        $programs = TrainingProgram::with('category')->where('status', 'accepted');
+        $programs = TrainingProgram::with('category');
         $categories=Category::all();
-        return view('coach.addProgram', compact('programs','categories'));
+        return view('Home.trainingPrograms', compact('programs','categories'));
     }
 
     /**
@@ -32,8 +33,14 @@ class TrainingProgramController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreTrainingProgramRequest $request)
-    {
-        $programs = TrainingProgram::create($request->all());
+    { 
+        $description = strip_tags($request->input('description'));
+        $programs = TrainingProgram::create([
+        'title' => $request->input('title'),
+        'category_id' => $request->input('category_id'),
+        'coach_id' => $request->input('coach_id'), 
+        'description' => $description,
+        ]);
         $categories = Category::all();
         $programs->addMediaFromRequest('image')->toMediaCollection('images');
         $programs->update(['status' => 'pending']);
@@ -71,4 +78,5 @@ class TrainingProgramController extends Controller
     {
         //
     }
+   
 }

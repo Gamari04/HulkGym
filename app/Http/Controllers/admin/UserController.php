@@ -29,42 +29,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
+        $user->addMediaFromRequest('image')->toMediaCollection('images');
         return redirect()->route('users.index');
     }
-    // public function submitCoachRequest()
-    // {
-    //     $user = Auth::user(); 
-    
-    //     if ($user) {
-    //         $user->update(['coach_request_status' => 'pending']);
-    //      }
-       
-    //     return redirect()->back();
-    // }
-    // public function showRequests()
-    // {
-    //     $requests = User::where('coach_request_status', 'pending')->get();
 
-    //     return view('admin.users.coachRequest', compact('requests'));
-    // }
-    // public function AcceptCoach($id)
-    // {
-    //     $user = User::findOrFail($id);
-
-    //     $coachRole = Role::where('name','coach')->first();
-
-    // if ($coachRole) {
-    //     $user->update(['coach_request_status' => 'accepted', 'role_id' => $coachRole->id]); // Met à jour le statut de la demande du coach et le rôle de l'utilisateur
-    // }
-    //      return redirect()->back();
-    // }
-    // public function RejectCoach($id)
-    // {
-    //     $user = User::findOrFail($id);
-
-    //      $user->update(['coach_request_status' => 'rejected']); 
-    //      return redirect()->back();
-    // }
 
     public function BannedUser($id)
     {

@@ -98,4 +98,11 @@ class CoachController extends Controller
         $user->update(['request_status' => 'rejected']);
         return redirect()->back();
     }
+    public function showCreatedPrograms($id)
+    {
+        $coach = Coach::findOrFail($id);
+        $createdPrograms = $coach->training_programs()->get(); ;
+        
+        return view('coach.MyPrograms', compact('coach', 'createdPrograms'));
+    }
 }

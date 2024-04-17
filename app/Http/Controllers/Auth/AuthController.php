@@ -26,6 +26,8 @@ class AuthController extends Controller
             'dateOfBirth'=>null,
             'status'=>'Accepted',
         ]);
+        
+        $user->addMediaFromRequest('image')->toMediaCollection('images');
         Auth::login($user);
 
         return redirect('/');

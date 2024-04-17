@@ -17,14 +17,16 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/barfiller.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style1.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/barfiller.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/style1.css') }}" type="text/css">
+    
 </head>

@@ -48,8 +48,7 @@
                 </div>
                 <div class="col-lg-6">
                     <nav class="nav-menu">
-                        @if (auth()->user() && auth()->user()->hasRole('user'))
-                            <ul>
+                        @if (auth()->check() && auth()->user()->hasRole('user') || !auth()->check())                            <ul>
                                 <li class="active"><a href="/">Home</a></li>
                                 <li><a href="/about">About Us</a></li>
                                 <li><a href="./class-details.html">Classes</a></li>
@@ -76,7 +75,7 @@
                             <ul>
                                 <li class="active"><a href="/">Home</a></li>
 
-                                <li><a href="./class-details.html">My Programs</a></li>
+                                <li><a href="{{ route('MyPrograms', auth()->user()->id)}}">My Programs</a></li>
 
 
                                 <li><a href="#">Pages</a>
@@ -92,7 +91,7 @@
                                 </li>
 
                                 <li> <a href="{{ route('training_programs.store') }}"
-                                        class="primary-btn  btn-normal">Add Program</a></li>
+                                        class="primary-btn rounded p-2">Add Program</a></li>
 
                             </ul>
                         @endif
@@ -125,10 +124,12 @@
                                 </li>
                             @endif --}}
                             {{-- <div id="mobile-menu-wrap"></div> --}}
+                            @if (auth()->check())
+                             
                             <div class="navbar-nav">
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                                        <img class="rounded-circle me-lg-2" src="images/profile.png" alt=""
+                                        <img class="rounded-circle me-lg-2" src="{{ asset('images/profile.png') }}" alt=""
                                             style="width: 40px; height: 40px;">
                                         @if (auth()->check())
                                             <span class="d-none d-lg-inline-flex">{{ auth()->user()->name }}</span>
@@ -146,6 +147,8 @@
                                         @endif
                                 </div>
                             </div>
+                               
+                            @endif
                             {{-- @if (auth()->check())
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -154,7 +157,7 @@
                             @else
                                  --}}
                             @unless (auth()->check())
-                                <<a href="{{ route('register') }}" class="primary-btn">Sign Up</a>
+                                <a href="{{ route('register') }}" class="primary-btn">Sign Up</a>
                                 @endunless
 
                         </div>
