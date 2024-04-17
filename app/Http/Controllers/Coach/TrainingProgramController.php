@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Coach;
 
+use App\Http\Controllers\Controller;
 use App\Models\TrainingProgram;
 use App\Http\Requests\StoreTrainingProgramRequest;
 use App\Http\Requests\UpdateTrainingProgramRequest;
+use App\Models\Category;
 
 class TrainingProgramController extends Controller
 {
@@ -13,7 +15,9 @@ class TrainingProgramController extends Controller
      */
     public function index()
     {
-        //
+        $programs = TrainingProgram::with('category')->where('status', 'accepted');
+        $categories=Category::all();
+        return view('coach.addProgram', compact('programs','categories'));
     }
 
     /**
@@ -29,7 +33,11 @@ class TrainingProgramController extends Controller
      */
     public function store(StoreTrainingProgramRequest $request)
     {
-        //
+        $programs = TrainingProgram::create($request->all());
+        $categories = Category::all();
+        $programs->addMediaFromRequest('image')->toMediaCollection('images');
+        $programs->update(['status' => 'pending']);
+        return view('coach.addProgram', compact('categories'));
     }
 
     /**

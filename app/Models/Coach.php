@@ -11,10 +11,16 @@ class Coach extends Model
     protected $fillable = [
         'speciality',
         'biography',
+        'user_id',
+        'request_status',
     ]; 
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function training_programs()
+    {
+        return $this->hasMany(TrainingProgram::class);
     }
 }

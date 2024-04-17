@@ -10,11 +10,19 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class TrainingProgram extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
+    protected $fillable = [
+        'title',
+        'description',
+        'category_id',
+        'coach_id',
+        'status',
+       
+    ];
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-    public function coaches()
+    public function coach()
     {
         return $this->belongsTo(Coach::class);
     }

@@ -66,10 +66,14 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="/admin" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{ route('users.index') }}" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>Users</a>
-                    <a href="{{ route('categories.index') }}" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>Categories</a>
-                    <a href="{{ route('coachRequest') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Coach Request</a>
+                    <a href="/admin" class="nav-item nav-link active"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="{{ route('users.index') }}" class="nav-item nav-link"><i
+                            class="fa fa-laptop me-2"></i>Users</a>
+                    <a href="{{ route('categories.index') }}" class="nav-item nav-link"><i
+                            class="fa fa-laptop me-2"></i>Categories</a>
+                    <a href="{{ route('coachRequest') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Coach
+                        Request</a>
                     <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
                     <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
@@ -211,23 +215,25 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($requests as $request)
-          
-      
-    <tr>
-        <td>{{ $request->id}} </td>
-        <td>{{ $request->name}} </td>
-        <td>{{ $request->email}} </td>
-        <td><a href="{{ route('AcceptCoach',$request->id) }}" class="accept" data-toggle="modal"><i
-            class="material-icons" data-toggle="tooltip" title="Accept"
-            style="color: green;font-size: 30px;">check_circle</i>
-    </a>
-        <a href="{{ route('RejectCoach',$request->id) }}" class="reject" data-toggle="modal">
-            <i class="material-icons" data-toggle="tooltip" title="Reject" style="color: red;font-size: 30px;">cancel</i>
-        </a>
-    </td>
-    </tr> 
-    @endforeach
- 
+                                            <tr>
+                                                <td>{{ $request->id }} </td>
+                                                <td>{{ $request->user->name }} </td>
+                                                <td>{{ $request->user->email }} </td>
+                                                <td><a href="{{ route('AcceptCoach', $request->id) }}" class="accept"
+                                                        data-toggle="modal"><i class="material-icons"
+                                                            data-toggle="tooltip" title="Accept"
+                                                            style="color: green;font-size: 30px;">check_circle</i>
+                                                    </a>
+                                                    <a href="{{ route('RejectCoach', $request->id) }}" class="reject"
+                                                        data-toggle="modal">
+                                                        <i class="material-icons" data-toggle="tooltip"
+                                                            title="Reject"
+                                                            style="color: red;font-size: 30px;">cancel</i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

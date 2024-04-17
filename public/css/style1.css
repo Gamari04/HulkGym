@@ -1001,7 +1001,9 @@ ol {
 	-ms-transform: skewY(-5deg);
 	transform: skewY(-5deg);
 }
-
+.modal {
+	z-index: 1050; /* ou toute autre valeur que vous souhaitez, assurez-vous qu'elle est supérieure à z-index des autres éléments */
+}
 .ts-slider.owl-carousel .owl-dots button.active {
 	background: rgb(34,139,34);
 }

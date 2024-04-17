@@ -7,7 +7,7 @@
     <meta name="keywords" content="Gym, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gym | Template</title>
+    <title>HulkGym</title>
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -67,13 +67,7 @@
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
         </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="canvas-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-youtube-play"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-        </div>
+
     </div>
     <!-- Offcanvas Menu Section End -->
 
@@ -92,51 +86,52 @@
                 <div class="col-lg-6">
                     <nav class="nav-menu">
                         @if (auth()->user() && auth()->user()->hasRole('user'))
-                        <ul>
-                            <li class="active"><a href="/">Home</a></li>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="./class-details.html">Classes</a></li>
-                            {{-- <li><a href="./services.html">Services</a></li> --}}
-                            <li><a href="./team.html">Our Team</a></li>
+                            <ul>
+                                <li class="active"><a href="/">Home</a></li>
+                                <li><a href="/about">About Us</a></li>
+                                <li><a href="./class-details.html">Classes</a></li>
+                                {{-- <li><a href="./services.html">Services</a></li> --}}
+                                <li><a href="./team.html">Our Team</a></li>
 
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="/about">About us</a></li>
-                                    <li><a href="./class-timetable.html">Classes timetable</a></li>
-                                    <li><a href="./bmi-calculator.html">Bmi calculate</a></li>
-                                    <li><a href="./team.html">Our team</a></li>
-                                    <li><a href="./gallery.html">Gallery</a></li>
-                                    <li><a href="./blog.html">Our blog</a></li>
-                                    <li><a href="./404.html">404</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./contact.html">Contact</a></li>
-                            
-                        
-                        </ul>
+                                <li><a href="#">Pages</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/about">About us</a></li>
+                                        <li><a href="./class-timetable.html">Classes timetable</a></li>
+                                        <li><a href="./bmi-calculator.html">Bmi calculate</a></li>
+                                        <li><a href="./team.html">Our team</a></li>
+                                        <li><a href="./gallery.html">Gallery</a></li>
+                                        <li><a href="./blog.html">Our blog</a></li>
+                                        <li><a href="./404.html">404</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="./contact.html">Contact</a></li>
+
+
+                            </ul>
                         @endif
                         @if (auth()->user() && auth()->user()->hasRole('coach'))
-                        <ul>
-                            <li class="active"><a href="/">Home</a></li>
-                        
-                            <li><a href="./class-details.html">My Programs</a></li>
-                           
+                            <ul>
+                                <li class="active"><a href="/">Home</a></li>
 
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="/about">About us</a></li>
-                                    <li><a href="./class-timetable.html">Classes timetable</a></li>
-                                    <li><a href="./bmi-calculator.html">Bmi calculate</a></li>
-                                    <li><a href="./team.html">Our team</a></li>
-                                    <li><a href="./gallery.html">Gallery</a></li>
-                                    <li><a href="./blog.html">Our blog</a></li>
-                                    <li><a href="./404.html">404</a></li>
-                                </ul>
-                            </li>
-                           
-                            <li> <a href="/addProgram" class="primary-btn  btn-normal">Add Program</a></li>
-                        
-                        </ul>
+                                <li><a href="./class-details.html">My Programs</a></li>
+
+
+                                <li><a href="#">Pages</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/about">About us</a></li>
+                                        <li><a href="./class-timetable.html">Classes timetable</a></li>
+                                        <li><a href="./bmi-calculator.html">Bmi calculate</a></li>
+                                        <li><a href="./team.html">Our team</a></li>
+                                        <li><a href="./gallery.html">Gallery</a></li>
+                                        <li><a href="./blog.html">Our blog</a></li>
+                                        <li><a href="./404.html">404</a></li>
+                                    </ul>
+                                </li>
+
+                                <li> <a href="{{ route('training_programs.store') }}"
+                                        class="primary-btn  btn-normal">Add Program</a></li>
+
+                            </ul>
                         @endif
                     </nav>
                 </div>
@@ -150,30 +145,55 @@
                             <a href="#"><i class="fa fa-twitter"></i></a>
                             <a href="#"><i class="fa fa-youtube-play"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a> --}}
-                            @if (auth()->user() && auth()->user()->hasRole('user'))
-                            <li class="nav-item">
-                                <form method="POST" action="{{ route('submit') }}" id="CoachRequestForm">
-                                    @csrf
-                                    <button type="submit" class="primary-btn  btn-normal"
-                                        id="submitCoachRequest">Became Coach</button>
-                                </form>
-                                <div id="successMessage" style="display: none;" class="alert alert-success mt-3">
-                                    Congratulations! Your request to become an organizer has been successfully
-                                    submitted. We will review your request soon. Thank you!
+                            {{-- @if (auth()->user() && auth()->user()->hasRole('user'))
+                                <li class="nav-item">
+                                    <button type="button" class="primary-btn" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        Became Coach
+                                    </button>
+
+
+                                    <div id="successMessage" style="display: none;" class="alert alert-success mt-3">
+                                        Congratulations! Your request to become a coach has been successfully
+                                        submitted. We will review your request soon. Thank you!
+                                    </div>
+
+
+                                </li>
+                            @endif --}}
+                            {{-- <div id="mobile-menu-wrap"></div> --}}
+                            <div class="navbar-nav">
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                        <img class="rounded-circle me-lg-2" src="images/profile.png" alt=""
+                                            style="width: 40px; height: 40px;">
+                                        @if (auth()->check())
+                                            <span class="d-none d-lg-inline-flex">{{ auth()->user()->name }}</span>
+
+                                            <div
+                                                class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                                                <a href="/profile" class="dropdown-item">My Profile</a>
+                                                <a href="#" class="dropdown-item">Settings</a>
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+                                                    <button class="dropdown-item bg-light" >Log Out</button>
+                                                </form>
+                                         
+                                            </div>
+                                        @endif
                                 </div>
-
-
-                            </li>
-                        @endif
-
-                            @if (auth()->check())
+                            </div>
+                            {{-- @if (auth()->check())
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button class="primary-btn">Log Out</button>
                                 </form>
                             @else
-                                <a href="{{ route('register') }}" class="primary-btn">Sign Up</a>
-                            @endif
+                                 --}}
+                            @unless (auth()->check())
+                                <<a href="{{ route('register') }}" class="primary-btn">Sign Up</a>
+                                @endunless
+
                         </div>
 
 
@@ -660,7 +680,50 @@
         </div>
     </div>
     <!-- Search model end -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-secondary text-light">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('coaches.store') }}" method="post" enctype="multipart/form-data"
+                        class="shadow p-4 rounded mt-5" style="width: 90%; max-width: 50rem;">
+                        @csrf
+                        <h1 class="text-center pb-5 display-4 fs-3">Add New Category
+                        </h1>
 
+                        <div class="mb-3">
+                            <label class="form-label">Your speciality</label>
+                            <input type="text" class="form-control border text-light"
+                                placeholder="Enter Your Speciality" name="speciality">
+                            @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Your Biography</label>
+                            <input type="text" class="form-control border text-light"
+                                placeholder="Enter Your Biography" name="biography">
+                            @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div div class="mb-3">
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Send Request </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Js Plugins -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -677,7 +740,9 @@
             });
         });
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.magnific-popup.min.js"></script>
