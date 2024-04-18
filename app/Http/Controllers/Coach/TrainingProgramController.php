@@ -14,19 +14,20 @@ class TrainingProgramController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $programs = TrainingProgram::with('category');
-        $categories=Category::all();
-        return view('Home.trainingPrograms', compact('programs','categories'));
-    }
+    // public function index()
+    // {
+    //     $programs = TrainingProgram::with('category');
+    //     $categories=Category::all();
+    //     return view('coach.addProgram', compact('programs','categories'));
+    // }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('coach.addProgram',compact('categories'));
     }
 
     /**
@@ -41,10 +42,10 @@ class TrainingProgramController extends Controller
         'coach_id' => $request->input('coach_id'), 
         'description' => $description,
         ]);
-        $categories = Category::all();
+      
         $programs->addMediaFromRequest('image')->toMediaCollection('images');
         $programs->update(['status' => 'pending']);
-        return view('coach.addProgram', compact('categories'));
+        return redirect()->route('MyPrograms',auth()->user()->id);
     }
 
     /**

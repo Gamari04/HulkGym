@@ -104,5 +104,5 @@ class CoachController extends Controller
         $createdPrograms = $coach->training_programs()->get(); ;
         
         return view('coach.MyPrograms', compact('coach', 'createdPrograms'));
-    }
+    } 
 }

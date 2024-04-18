@@ -31,9 +31,9 @@ Route::get('/about', function () {
 Route::get('/profile', function () {
     return view('Home.profile');
 });
-// Route::get('/MyPrograms', function () {
-//     return view('coach.MyPrograms');
-// });
+Route::get('/addProgram', function () {
+    return view('coach.addProgram');
+});
 Route::get('MyPrograms/{id}',[CoachController::class, 'showCreatedPrograms'])->name('MyPrograms');
 Route::resource('training_programs',TrainingProgramController::class);
 Route::get('login', [AuthController::class, 'LoginPage']);

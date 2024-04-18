@@ -399,7 +399,7 @@ a, a:hover {
 					<li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
 					<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
 					<li class="tag__item play blue">
-						<a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
+						<a href="#"><i class="fas fa-play mr-1"></i>Play Episode</a>
 					</li>
 				</ul>
 			</div>

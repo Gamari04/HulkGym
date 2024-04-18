@@ -90,7 +90,7 @@
                                     </ul>
                                 </li>
 
-                                <li> <a href="{{ route('training_programs.store') }}"
+                                <li> <a href="{{ route('training_programs.create') }}"
                                         class="primary-btn rounded p-2">Add Program</a></li>
 
                             </ul>

@@ -3,10 +3,7 @@
 @include('Home.layouts.header')
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+  
     <!-- Header End -->
 @include('Home.layouts.nav')<br><br><br><br>
     <!-- Header End -->
