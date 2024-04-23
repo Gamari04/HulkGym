@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Coach\CoachController;
 use App\Http\Controllers\Coach\TrainingProgramController;
+use App\Http\Controllers\Coach\ExerciceController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,8 +32,8 @@ Route::get('/about', function () {
 Route::get('/profile', function () {
     return view('Home.profile');
 });
-Route::get('/addProgram', function () {
-    return view('coach.addProgram');
+Route::get('/exercice', function () {
+    return view('Home.exercices');
 });
 Route::get('MyPrograms/{id}',[CoachController::class, 'showCreatedPrograms'])->name('MyPrograms');
 Route::resource('training_programs',TrainingProgramController::class);
@@ -44,6 +45,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::resource('users',UserController::class);
+Route::resource('exercices',ExerciceController::class);
 Route::resource('categories',CategoryController::class);
 Route::resource('coaches',CoachController::class);
 
@@ -52,3 +54,5 @@ Route::get('AcceptRequests/{id}', [CoachController::class, 'AcceptCoach'])->name
 Route::get('RejectRequests/{id}', [CoachController::class, 'RejectCoach'])->name('RejectCoach');
 
 Route::get('BannedUser/{id}', [UserController::class, 'BannedUser'])->name('BannedUser');
+Route::get('/training-programs/{trainingProgram}', [TrainingProgramController::class,'showExercises'])->name('showExercices');
+Route::get('/exercises/{id}', [ExerciceController::class,'show'])->name('exercise.show');

@@ -35,14 +35,14 @@
     <!-- Offcanvas Menu Section End -->
 
     <!-- Header Section Begin -->
-    <header class="header-section">
+    <nav class="mt-5 ">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="logo">
+            <div class="row ">
+                <div class="col-lg-3 align-items-start">
+                    <div class="logo" style="margin-top: 10px;">
                         <a href="/">
-                            <img src="images/VIRUS.png" alt="" class="mb-0"
-                                style="width: 100px; margin:0%;padding-top:0%;">
+                            <img src="{{ asset('images/VIRUS.png') }}" alt="" class=""
+                                style="width: 100px; height:150px;">
                         </a>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         @if (auth()->check() && auth()->user()->hasRole('user') || !auth()->check())                            <ul>
                                 <li class="active"><a href="/">Home</a></li>
                                 <li><a href="/about">About Us</a></li>
-                                <li><a href="./class-details.html">Classes</a></li>
+                                <li><a href="{{ route('training_programs.index') }}">Training Programs</a></li>
                                 {{-- <li><a href="./services.html">Services</a></li> --}}
                                 <li><a href="./team.html">Our Team</a></li>
 
@@ -171,4 +171,4 @@
                 <i class="fa fa-bars"></i>
             </div>
         </div>
-    </header>
+    </nav>

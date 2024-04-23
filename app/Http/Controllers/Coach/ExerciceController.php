@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Coach;
 
+use App\Http\Controllers\Controller;
 use App\Models\Exercice;
 use App\Http\Requests\StoreExerciceRequest;
 use App\Http\Requests\UpdateExerciceRequest;
+use App\Models\TrainingProgram;
 
 class ExerciceController extends Controller
 {
@@ -13,7 +15,9 @@ class ExerciceController extends Controller
      */
     public function index()
     {
-        //
+        $exercices = Exercice::all();
+        $programs= TrainingProgram::all();
+        return view('Home.exercices', compact('programs','exercices'));
     }
 
     /**
@@ -29,16 +33,19 @@ class ExerciceController extends Controller
      */
     public function store(StoreExerciceRequest $request)
     {
-        //
+        
+        Exercice::create($request->all());
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Exercice $exercice)
-    {
-        //
-    }
+    public function show($id)
+{
+    $exercise = Exercice::findOrFail($id);
+    return view('exercises.show', compact('exercise'));
+}
 
     /**
      * Show the form for editing the specified resource.

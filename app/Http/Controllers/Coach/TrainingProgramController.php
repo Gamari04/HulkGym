@@ -14,12 +14,12 @@ class TrainingProgramController extends Controller
     /**
      * Display a listing of the resource.
      */
-    // public function index()
-    // {
-    //     $programs = TrainingProgram::with('category');
-    //     $categories=Category::all();
-    //     return view('coach.addProgram', compact('programs','categories'));
-    // }
+    public function index()
+    {
+        $programs = TrainingProgram::with('category')->get();
+        $categories=Category::all();
+        return view('Home.trainingPrograms', compact('programs','categories'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -80,4 +80,11 @@ class TrainingProgramController extends Controller
         //
     }
    
+    public function showExercises($id)
+{
+    $trainingProgram = TrainingProgram::findOrFail($id);
+    $exercises = $trainingProgram->exercices()->get();
+
+    return view('Home.exercices', compact('trainingProgram','exercises'));
+}
 }

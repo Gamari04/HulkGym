@@ -114,7 +114,6 @@
         var organizerRequestForm = document.getElementById('CoachRequestForm');
 
         submitButton.addEventListener('click', function() {
-            // Affichez le message de réussite
             successMessage.style.display = 'block';
             setTimeout(function() {
                 successMessage.style.display = 'none';
@@ -141,6 +140,7 @@
             console.error(error);
         });
 </script>
+
 
 </body>
 

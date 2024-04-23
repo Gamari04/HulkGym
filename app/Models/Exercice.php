@@ -14,4 +14,14 @@ class Exercice extends Model implements HasMedia
     {
         return $this->belongsTo(TrainingProgram::class);
     }
+    protected $fillable = [
+        'title',
+        'duration',
+        'Required_Equipment',
+        'Difficulty_Level',
+        'Targeted_Muscle_Groups',
+        'Instructions',
+        'Number_Sets_Repetitions',
+        'training_program_id',
+    ]; 
 }

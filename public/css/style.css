@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-    --primary: #fff000;
+    --primary: rgb(34,139,34);
     --secondary: #191C24;
     --light: #6C7293;
     --dark: #000000;
@@ -71,7 +71,7 @@
     width: 250px;
     height: 100vh;
     overflow-y: auto;
-    background: var(--secondary);
+    background: #000000;
     transition: 0.5s;
     z-index: 999;
 }
