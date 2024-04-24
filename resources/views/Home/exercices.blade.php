@@ -119,14 +119,20 @@
     <!-- Sidebar Start -->
     <div class="row">
         <div class="col-lg-4 mt-4">
-            <div class="sidebar  border border-success" style="margin-top: 8%; padding-right: 20%;">
+            <div class="sidebar  border border-success" >
                
 
                     <div class="navbar-nav w-100">
+                        @php
+                            $count = 1;
+                        @endphp
                         @foreach ($exercises as $exercise)
                             <li>
-                                <a href="{{ route('exercise.show', ['id' => $exercise->id]) }}"class="nav-item nav-link"><span class="course-number">1</span>{{ $exercise->title}}</a>
+                                <a href="{{ route('exercise.show', ['id' => $exercise->id]) }}"class="nav-item nav-link"><span class="course-number">{{ $count }}</span>{{ $exercise->title}}</a>
                             </li>
+                            @php
+                                $count++;
+                            @endphp
                         @endforeach
                     </div>
                 
