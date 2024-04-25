@@ -65,14 +65,10 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="/admin" class="nav-item nav-link active"><i
-                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{ route('users.index') }}" class="nav-item nav-link"><i
-                            class="fa fa-laptop me-2"></i>Users</a>
-                    <a href="{{ route('categories.index') }}" class="nav-item nav-link"><i
-                            class="fa fa-laptop me-2"></i>Categories</a>
-                    <a href="{{ route('coachRequest') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Coach
-                        Request</a>
+                    <a href="/admin" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="{{ route('users.index') }}" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>Users</a>
+                    <a href="{{ route('categories.index') }}" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>Categories</a>
+                    <a href="{{ route('coachRequest') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Coach Request</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
                     <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
                     <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
@@ -193,7 +189,7 @@
 
             <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 style="background-color: #54a054b1 ">
-                Add Category
+                Add Product Category
             </button>
 
             <!-- Modal -->
@@ -207,19 +203,17 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('categories.store') }}" method="post"
+                            <form action="{{ route('types.store')}}" method="post"
                                 enctype="multipart/form-data" class="shadow p-4 rounded mt-5"
                                 style="width: 90%; max-width: 50rem;">
                                 @csrf
                                 <h1 class="text-center pb-5 display-4 fs-3">Add New Category</h1>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Name of the Category</label>
+                                    <label class="form-label">Name of the Category Product</label>
                                     <input type="text" class="form-control border text-dark"
                                         placeholder="Enter a title" name="name">
-                                    @error('name')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
+                                    
                                 </div>
 
                                 <div class="modal-footer">
@@ -251,28 +245,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($categories as $category)
+                                        @foreach ($types as $type)
                                             <tr class="">
-                                                <th scope="row">{{ $category->id }}</th>
-                                                <td>{{ $category->name }}</td>
+                                                <th scope="row">{{ $type->id }}</th>
+                                                <td>{{ $type->name }}</td>
 
                                                 <td>
                                                     <div class="row">
                                                         <div class="col-2">
-                                                            <a href="{{ route('categories.edit', $category->id) }}">
-
-
-
-
-                                                                <lord-icon src="https://cdn.lordicon.com/ylvuooxd.json"
-                                                                    trigger="hover"
-                                                                    colors="primary:#ebe6ef,secondary:#f9c9c0,tertiary:#ffffff,quaternary:#f2e2d9"
-                                                                    style="width:30px;height:30px"></lord-icon>
-                                                            </a>
+                                                            <a href="{{ route('types.edit', $type->id) }}" >
+                                                                
+                                                                
+                                                                
+                                                               
+                                                                    <lord-icon
+                                                                        src="https://cdn.lordicon.com/ylvuooxd.json"
+                                                                        trigger="hover"
+                                                                        colors="primary:#ebe6ef,secondary:#f9c9c0,tertiary:#ffffff,quaternary:#f2e2d9"
+                                                                        style="width:30px;height:30px"></lord-icon>
+                                                        </a>
                                                         </div>
                                                         <div class="col-2">
                                                             <form
-                                                                action="{{ route('categories.destroy', $category->id) }}"
+                                                                action="{{ route('types.destroy', $type->id) }}"
                                                                 method="post">
                                                                 @method('DELETE')
                                                                 @csrf
@@ -298,37 +293,7 @@
                 </div>
             </div>
             <!-- Table End -->
-            <!-- Form Start -->
-            {{-- <div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-sm-12 col-xl-6">
-            <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Basic Form</h6>
-                <form action="{{ route('users.update',$user->id) }}" method="POST"
-                    enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1"
-                            aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                </form>
-            </div>
-        </div>
-      
-    </div>
-</div> --}}
-            <!-- Form End -->
+   
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">

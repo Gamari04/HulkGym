@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\TypeController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Coach\CoachController;
@@ -50,6 +51,8 @@ Route::resource('exercices',ExerciceController::class);
 Route::resource('categories',CategoryController::class);
 Route::resource('coaches',CoachController::class);
 Route::resource('products',ProductController::class);
+Route::resource('types',TypeController::class);
+Route::get('/', [ProductController::class, 'showProduct']);
 
 Route::get('showRequests', [CoachController::class, 'showRequests'])->name('coachRequest');
 Route::get('AcceptRequests/{id}', [CoachController::class, 'AcceptCoach'])->name('AcceptCoach');
@@ -58,3 +61,6 @@ Route::get('RejectRequests/{id}', [CoachController::class, 'RejectCoach'])->name
 Route::get('BannedUser/{id}', [UserController::class, 'BannedUser'])->name('BannedUser');
 Route::get('/training-programs/{trainingProgram}', [TrainingProgramController::class,'showExercises'])->name('showExercices');
 Route::get('/exercises/{id}', [ExerciceController::class,'show'])->name('exercise.show');
+
+Route::post('/session', 'App\Http\Controllers\StripeController@session')->name('session');
+Route::get('/success', 'App\Http\Controllers\StripeController@success')->name('success');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Type;
 
 class ProductController extends Controller
 {
@@ -14,11 +15,16 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-
-        return view('admin.product.index', compact('products'));
+        $products = Product::with('type')->get();
+        $types = Type::all();
+        return view('admin.product.index', compact('products','types'));
     }
-
+    public function showProduct()
+    {
+        $products = Product::with('type')->get();
+        $types=Type::all();
+        return view('Home.index', compact('products','types'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -32,7 +38,9 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $products=Product::create($request->all());
+        $products->addMediaFromRequest('image')->toMediaCollection('images');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -40,7 +48,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('Home.productDetails',compact('product'));
     }
 
     /**
@@ -48,7 +56,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.product.edit',[ 'product'=>$product]);
     }
 
     /**
@@ -56,7 +64,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $product->update($request->all());
+        return redirect()->route('products.index');
     }
 
     /**
@@ -64,6 +73,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }
