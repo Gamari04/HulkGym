@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Coach\CoachController;
@@ -48,6 +49,7 @@ Route::resource('users',UserController::class);
 Route::resource('exercices',ExerciceController::class);
 Route::resource('categories',CategoryController::class);
 Route::resource('coaches',CoachController::class);
+Route::resource('products',ProductController::class);
 
 Route::get('showRequests', [CoachController::class, 'showRequests'])->name('coachRequest');
 Route::get('AcceptRequests/{id}', [CoachController::class, 'AcceptCoach'])->name('AcceptCoach');

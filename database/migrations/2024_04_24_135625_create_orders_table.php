@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('total_amount');
-            $table->enum('status', ['pending', 'accepted', 'rejected'])->nullable();
+            $table->enum('status', ['pending','Shipped'])->nullable();
+            $table->integer('code_postal');
+            $table->string('address');
+            $table->integer('phone');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
