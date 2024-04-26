@@ -8,7 +8,7 @@
         <div class="loader"></div>
     </div>
     <!-- Header End -->
-@include('Home.layouts.nav')<br><br><br><br>
+@include('Home.layouts.nav')
     <!-- Header End -->
 
     <main class="pt-5">
@@ -19,14 +19,14 @@
                 <div class="col-lg-4">
                   <div class="card mb-4 bg-dark">
                     <div class="card-body text-center">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                      <img src="{{ asset('images/profile.png') }}" alt="avatar"
                         class="rounded-circle img-fluid" style="width: 150px;">
-                      <h5 class="my-3">John Smith</h5>
-                      <p class="text-muted mb-1">Full Stack Developer</p>
-                      <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                      <h5 class="my-3"></h5>
+                      <p class="text-muted mb-1">{{ $user->name }}</p>
+                      
                       <div class="d-flex justify-content-center mb-2">
-                        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Follow</button>
-                        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary ms-1">Message</button>
+                        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn " style="background-color:darkgreen">Edit Profile</button>
+
                       </div>
                     </div>
                   </div>
@@ -40,7 +40,7 @@
                           <p class="mb-0">Full Name</p>
                         </div>
                         <div class="col-sm-9">
-                          <p class="text-muted mb-0">Johnatan Smith</p>
+                          <p class="text-muted mb-0">{{ $user->name }}</p>
                         </div>
                       </div>
                       <hr>
@@ -49,7 +49,7 @@
                           <p class="mb-0">Email</p>
                         </div>
                         <div class="col-sm-9">
-                          <p class="text-muted mb-0">example@example.com</p>
+                          <p class="text-muted mb-0">{{ $user->email}}</p>
                         </div>
                       </div>
                       <hr>
@@ -58,18 +58,11 @@
                           <p class="mb-0">Phone</p>
                         </div>
                         <div class="col-sm-9">
-                          <p class="text-muted mb-0">(097) 234-5678</p>
+                          <p class="text-muted mb-0"> 234-5678</p>
                         </div>
                       </div>
                       <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Mobile</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p class="text-muted mb-0">(098) 765-4321</p>
-                        </div>
-                      </div>
+                      
                       <hr>
                       <div class="row">
                         <div class="col-sm-3">
@@ -81,74 +74,20 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="card mb-4 mb-md-0 bg-dark">
-                        <div class="card-body">
-                          <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                          </p>
-                          <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 72%" aria-valuenow="72"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 89%" aria-valuenow="89"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 55%" aria-valuenow="55"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                          <div class="progress rounded mb-2" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 66%" aria-valuenow="66"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
+                  <h2 class="text-primary">The trainings Program You Follow</h2>
+                  <div class="row m-5">
+                    @foreach($followedTrainingPrograms as $trainingProgram)
+                        <div class="col-12 col-md-4 mb-4 ml-3 mr-3">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="{{ $trainingProgram->getFirstMediaUrl('images') }}" alt="Card image cap" style="width: 100%; height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                  <h3>{{ $trainingProgram->title }}</h3>
+                                    <p class="card-text">{{ $trainingProgram->description }}Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="card mb-4 mb-md-0 bg-dark">
-                        <div class="card-body">
-                          <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                          </p>
-                          <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 72%" aria-valuenow="72"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 89%" aria-valuenow="89"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                          <div class="progress rounded" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 55%" aria-valuenow="55"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                          <div class="progress rounded mb-2" style="height: 5px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 66%" aria-valuenow="66"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    @endforeach
+                </div>
                 </div>
               </div>
             </div>
@@ -156,26 +95,5 @@
 
     </main>
     <!-- Js Plugins -->
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
 
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/masonry.pkgd.min.js"></script>
-    <script src="js/jquery.barfiller.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main1.js"></script>
-
-
-
-</body>
-
-</html>
+@include('Home.layouts.footer')

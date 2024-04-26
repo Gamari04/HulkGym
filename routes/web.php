@@ -3,7 +3,8 @@
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TypeController;
-use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\UserController as userAdmin;
+use App\Http\Controllers\user\UserController as user;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Coach\CoachController;
 use App\Http\Controllers\Coach\TrainingProgramController;
@@ -31,9 +32,8 @@ Route::get('/admin', function () {
 Route::get('/about', function () {
     return view('Home.about');
 });
-Route::get('/profile', function () {
-    return view('Home.profile');
-});
+
+Route::get('/profile', [user::class, 'showProfile'])->name('profile');
 Route::get('/exercice', function () {
     return view('Home.exercices');
 });
@@ -46,7 +46,8 @@ Route::post('register',[AuthController::class, 'register'])->name('register');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::resource('users',UserController::class);
+Route::resource('users',userAdmin::class);
+Route::resource('users',user::class);
 Route::resource('exercices',ExerciceController::class);
 Route::resource('categories',CategoryController::class);
 Route::resource('coaches',CoachController::class);
@@ -59,7 +60,7 @@ Route::get('showRequests', [CoachController::class, 'showRequests'])->name('coac
 Route::get('AcceptRequests/{id}', [CoachController::class, 'AcceptCoach'])->name('AcceptCoach');
 Route::get('RejectRequests/{id}', [CoachController::class, 'RejectCoach'])->name('RejectCoach');
 
-Route::get('BannedUser/{id}', [UserController::class, 'BannedUser'])->name('BannedUser');
+Route::get('BannedUser/{id}', [userAdmin::class, 'BannedUser'])->name('BannedUser');
 Route::get('/training-programs/{trainingProgram}', [TrainingProgramController::class,'showExercises'])->name('showExercices');
 Route::get('/exercises/{id}', [ExerciceController::class,'show'])->name('exercise.show');
 Route::post('/training/{trainingProgram}/follow', [TrainingProgramController::class, 'follow'])->name('training.follow');

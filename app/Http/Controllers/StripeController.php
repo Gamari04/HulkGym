@@ -21,15 +21,15 @@ class StripeController extends Controller
             'line_items' => [
                 [
                     'price_data' => [
-                        'currency' => 'usd', // Assuming USD, adjust if needed
+                        'currency' => 'usd', 
                         'product_data' => [
-                            'name' => $product->name, // Descriptive name
-                            'description' => $product->description,
+                        'name' => $product->name, 
+                        'description' => $product->description,
 
                         ],
                         'unit_amount' => $unitAmount,
                     ],
-                    'quantity' => $request->quantity, // Allow quantity adjustment
+                    'quantity' => $request->quantity, 
                 ],
             ],
             'mode' => 'payment',
@@ -54,7 +54,7 @@ class StripeController extends Controller
             'user_id' => $request->user_id,
             'product_id' => $product->id,
             'quantity'=>$request->quantity,
-                'total_amount'=>$product->price*$request->quantity,
+            'total_amount'=>$product->price*$request->quantity,
         
         ]);
         $product->quantity-=$request->quantity;

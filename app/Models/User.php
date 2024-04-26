@@ -66,6 +66,6 @@ class User extends Authenticatable implements HasMedia
     }
     public function training_programs()
     {
-        return $this->belongsToMany('training_programs');
+        return $this->belongsToMany(TrainingProgram::class);
     }
 }

@@ -421,7 +421,4 @@ a, a:hover {
     <script src="js/main1.js"></script>
 
 
-
-</body>
-
-</html>
+@include('Home.layouts.footer')

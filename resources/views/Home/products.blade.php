@@ -177,7 +177,7 @@
 <body>
   
     <!-- Header End -->
-@include('Home.layouts.nav') <br><br><br><br>
+@include('Home.layouts.nav') 
 
   <!-- Blog Start -->
   <div class="container-fluid blog py-5 ">
@@ -186,15 +186,13 @@
             <h2 class="text-uppercase text-primary">All Products</h2>
            
         </div>
-        <div class="row ">
-            @foreach ($products as $product )
-                
-            
-                <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="row">
+            @foreach ($products as $product)
+                <div class="col-12 col-md-3">
                     <div class="thumb-wrapper">
                         <span class="wish-icon"><i class="fa fa-heart-o"></i></span>
                         <div class="img-box">
-                            <img src="{{ $product->getFirstMediaUrl('images') }}" class="img-fluid" alt="">									
+                            <img src="{{ $product->getFirstMediaUrl('images') }}" class="img-fluid" alt=""style="width: 100%; height: 200px; object-fit: cover;">									
                         </div>
                         <div class="thumb-content">
                             <h4 class="text-white">{{ $product->name }}</h4>									
@@ -212,9 +210,9 @@
                         </div>						
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
     </div>
 </div>
 <!-- Blog End -->
+@include('Home.layouts.footer')
