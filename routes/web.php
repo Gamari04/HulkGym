@@ -53,6 +53,7 @@ Route::resource('coaches',CoachController::class);
 Route::resource('products',ProductController::class);
 Route::resource('types',TypeController::class);
 Route::get('/', [ProductController::class, 'showProduct']);
+Route::get('/product', [ProductController::class, 'allProduct'])->name('allProducts');
 
 Route::get('showRequests', [CoachController::class, 'showRequests'])->name('coachRequest');
 Route::get('AcceptRequests/{id}', [CoachController::class, 'AcceptCoach'])->name('AcceptCoach');
@@ -62,5 +63,5 @@ Route::get('BannedUser/{id}', [UserController::class, 'BannedUser'])->name('Bann
 Route::get('/training-programs/{trainingProgram}', [TrainingProgramController::class,'showExercises'])->name('showExercices');
 Route::get('/exercises/{id}', [ExerciceController::class,'show'])->name('exercise.show');
 
-Route::post('/session', 'App\Http\Controllers\StripeController@session')->name('session');
-Route::get('/success', 'App\Http\Controllers\StripeController@success')->name('success');
+Route::post('/session/{product}', 'App\Http\Controllers\StripeController@session')->name('session');
+Route::get('/success/{productId}', 'App\Http\Controllers\StripeController@success')->name('success');

@@ -11,20 +11,20 @@ class Product extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable=[
-      'name',
-      'description',
-      'price',
-      'quantity',
-      'type_id',
-      'user_id',
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'quantity',
+        'type_id',
+        'user_id',
     ];
-    public function orders()
-{
-    return $this->belongsToMany(Order::class);
-}
-public function type()
-{
-    return $this->belongsTo(Type::class);
-}
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
+    public function users()
+    {
+        return $this->belongsToMany('users');
+    }
 }

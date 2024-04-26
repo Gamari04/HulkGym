@@ -60,4 +60,8 @@ class User extends Authenticatable implements HasMedia
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function products(){
+        return $this->belongsToMany('products');
+    }
 }

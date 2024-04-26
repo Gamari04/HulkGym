@@ -53,7 +53,7 @@
                                 <li><a href="/about">About Us</a></li>
                                 <li><a href="{{ route('training_programs.index') }}">Training Programs</a></li>
                                 {{-- <li><a href="./services.html">Services</a></li> --}}
-                                <li><a href="./team.html">Our Team</a></li>
+                                <li><a href="{{ route('allProducts') }}">Our Products</a></li>
 
                                 <li><a href="#">Pages</a>
                                     <ul class="dropdown">

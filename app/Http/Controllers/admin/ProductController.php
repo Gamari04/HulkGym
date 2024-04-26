@@ -25,6 +25,12 @@ class ProductController extends Controller
         $types=Type::all();
         return view('Home.index', compact('products','types'));
     }
+    public function allProduct()
+    {
+        $products = Product::with('type')->get();
+        $types=Type::all();
+        return view('Home.products', compact('products','types'));
+    }
     /**
      * Show the form for creating a new resource.
      */

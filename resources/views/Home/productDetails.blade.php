@@ -37,14 +37,14 @@
 
                     <p>{{ $product->description }} Et dolor suscipit libero eos atque quia ipsa sint voluptatibus! Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
 
-                    <form class="d-flex justify-content-left" action="{{ route('session', $product->id) }}" method="POST">
+                    <form class="d-flex justify-content-left" action="{{ route('session', ['product' => $product->id]) }}" method="POST">
                         <!-- Default input -->
                         <div class="form-outline me-1" style="width: 100px;">
                             <input type="number" value="1" class="form-control" />
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         </div>
                         <button class="btn btn-primary ms-1" type="submit">
-                            Add to cart
+                            Buy Now
                             <i class="fas fa-shopping-cart ms-1"></i>
                         </button>
                     </form>
