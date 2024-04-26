@@ -15,8 +15,8 @@ class StripeController extends Controller
         $product = Product::findOrFail($productId);
         $price = $product->price;
         $request->session()->put('productId', $productId);
-
-        $unitAmount = max(50, 100) * $price;
+        $totalPrice=$price*$request->quantity;
+        $unitAmount = max(50, 100) * $totalPrice;
         $session = \Stripe\Checkout\Session::create([
             'line_items' => [
                 [
@@ -29,11 +29,16 @@ class StripeController extends Controller
                         ],
                         'unit_amount' => $unitAmount,
                     ],
-                    'quantity' => $request->input('quantity', 1), // Allow quantity adjustment
+                    'quantity' => $request->quantity, // Allow quantity adjustment
                 ],
             ],
             'mode' => 'payment',
-            'success_url' => route('success', ['productId' => $productId]),
+            'success_url' => route('success', [
+                'user_id' => $request->user_id,
+                'productId' => $productId,
+                'quantity'=>$request->quantity,
+                'total_amount'=>$product->price*$request->quantity,
+        ]),
         ]);
 
         return redirect()->to($session->url);
@@ -46,12 +51,15 @@ class StripeController extends Controller
         $product = Product::findOrFail($productId);
         $product = Product::findOrFail($productId);
         ProductUser::create([
-            'user_id' => Auth::id(),
-            'product_id' => $product->id
+            'user_id' => $request->user_id,
+            'product_id' => $product->id,
+            'quantity'=>$request->quantity,
+                'total_amount'=>$product->price*$request->quantity,
+        
         ]);
-        $product->decrement('quantity');
+        $product->quantity-=$request->quantity;
         $product->save();
 
-        return redirect('/products')->with('success', 'payment successfully');
+        return redirect('/')->with('success', 'payment successfully');
     }
 }
