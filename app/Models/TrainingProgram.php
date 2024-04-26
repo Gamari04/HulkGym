@@ -30,4 +30,9 @@ class TrainingProgram extends Model implements HasMedia
     {
         return $this->hasMany(Exercice::class);
     }
+    
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

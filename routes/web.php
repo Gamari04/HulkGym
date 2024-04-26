@@ -62,6 +62,7 @@ Route::get('RejectRequests/{id}', [CoachController::class, 'RejectCoach'])->name
 Route::get('BannedUser/{id}', [UserController::class, 'BannedUser'])->name('BannedUser');
 Route::get('/training-programs/{trainingProgram}', [TrainingProgramController::class,'showExercises'])->name('showExercices');
 Route::get('/exercises/{id}', [ExerciceController::class,'show'])->name('exercise.show');
+Route::post('/training/{trainingProgram}/follow', [TrainingProgramController::class, 'follow'])->name('training.follow');
 
 Route::post('/session/{product}', 'App\Http\Controllers\StripeController@session')->name('session');
 Route::get('/success/{productId}', 'App\Http\Controllers\StripeController@success')->name('success');

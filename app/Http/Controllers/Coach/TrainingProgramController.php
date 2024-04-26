@@ -8,6 +8,7 @@ use App\Http\Requests\StoreTrainingProgramRequest;
 use App\Http\Requests\UpdateTrainingProgramRequest;
 use App\Models\Category;
 use App\Models\Coach;
+use Illuminate\Http\Request;
 
 class TrainingProgramController extends Controller
 {
@@ -86,5 +87,19 @@ class TrainingProgramController extends Controller
     $exercises = $trainingProgram->exercices()->get();
 
     return view('Home.exercices', compact('trainingProgram','exercises'));
+}
+public function follow(Request $request, $trainingProgramId)
+{
+    $trainingProgram = TrainingProgram::findOrFail($trainingProgramId);
+
+    if (auth()->check()) {
+        $userId = auth()->id();
+
+        $trainingProgram->users()->attach($userId);
+
+        return redirect()->back();
+    } else {
+        return redirect()->route('login');
+    }
 }
 }

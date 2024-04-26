@@ -64,4 +64,8 @@ class User extends Authenticatable implements HasMedia
     public function products(){
         return $this->belongsToMany('products');
     }
+    public function training_programs()
+    {
+        return $this->belongsToMany('training_programs');
+    }
 }

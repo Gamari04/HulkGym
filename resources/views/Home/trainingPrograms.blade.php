@@ -396,8 +396,13 @@ a, a:hover {
 				<div class="postcard__bar"></div>
 				<div class="postcard__preview-txt">{{ $program->description }}Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
-					<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+					<li class="tag__item">
+            <form action="{{ route('training.follow', $program->id) }}" method="POST">
+              @csrf
+              <button type="submit" style="background-color: #03532e;"><i class="fas fa-tag "></i>Start Program</button>
+          </form>
+          </li>
+					
 					<li class="tag__item play blue">
 						<a href="{{ route('showExercices',$program->id) }}"><i class="fas fa-play mr-1"></i>Play Episode</a>
 					</li>
