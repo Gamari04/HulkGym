@@ -103,16 +103,10 @@
                             <i class="fa fa-search"></i>
                         </div>
                         <div class="to-social">
-                            {{-- <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a> --}}
-                            {{-- @if (auth()->user() && auth()->user()->hasRole('user'))
+                            
+                             @if (auth()->user() && auth()->user()->hasRole('user'))
                                 <li class="nav-item">
-                                    <button type="button" class="primary-btn" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                        Became Coach
-                                    </button>
+                                   
 
 
                                     <div id="successMessage" style="display: none;" class="alert alert-success mt-3">
@@ -122,7 +116,7 @@
 
 
                                 </li>
-                            @endif --}}
+                            @endif 
                             {{-- <div id="mobile-menu-wrap"></div> --}}
                             @if (auth()->check())
                              

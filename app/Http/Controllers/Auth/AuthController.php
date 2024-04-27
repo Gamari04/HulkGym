@@ -43,12 +43,7 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
            
             $user = Auth::user();
-            
-           
-            // session([
-            //     'user_email' => $user->email,
-            //     'user_id' => $user->id,
-            // ]);
+          
             if ($user->status == 'Banned') {
                 Auth::logout();
                 return back()->withInput()->withErrors([

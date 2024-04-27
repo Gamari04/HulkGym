@@ -382,9 +382,12 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="bs-text">
-                        <h2>registration now to get more deals</h2>
+                        <h2>If you are coach send Now</h2>
                         <div class="bt-tips">Where health, beauty and fitness meet.</div>
-                        <a href="#" class="primary-btn  btn-normal">Appointment</a>
+                        <button type="button" class="primary-btn" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Became Coach
+                    </button>
                     </div>
                 </div>
             </div>
