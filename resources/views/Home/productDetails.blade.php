@@ -56,16 +56,39 @@
                                 <form class="d-flex justify-content-left" action="{{ route('session', ['product' => $product->id]) }}" method="POST">
                                     <!-- Default input -->
                                     
-                                    <div class="form-outline me-1" style="width: 100px;">
+
+
+                                    <div class="col-md-4 col-6 mb-3">
+                                        <label class="mb-2 d-block">Quantity</label>
+                                        <div class="input-group mb-3" style="width: 170px;">
+                                          <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
+                                            <i class="fas fa-minus"></i>
+                                          </button>
+                                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                          <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                                          <input type="number" value="1" class="form-control" name="quantity"/>
+                                          <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
+                                            <i class="fas fa-plus"></i>
+                                          </button>
+                                        </div>
+                                        <button class="btn b ms-1 text-dark" type="submit" style="background-color: green">
+                                            Save
+                                            
+                                        </button>
+                                      </div>
+
+                                    {{-- <div class="form-outline me-1" style="width: 100px;">
                                         <label class="form-label">How much you want?</label>
                                         <input type="number" value="1" class="form-control" name="quantity"/>
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="hidden" name="user_id" value="{{Auth::id()}}">
-                                    </div>
-                                    <button class="btn btn-primary ms-1" type="submit">
-                                        Save
-                                        
-                                    </button>
+                                    </div> --}}
+                                  
+
+
+
+
+                                    
                                 </form>
                             </div>
                         </div>
@@ -86,5 +109,27 @@
        
     </div>
 </main>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sélectionnez les boutons et l'input de quantité
+        var btnMinus = document.getElementById('button-addon1');
+        var btnPlus = document.getElementById('button-addon2');
+        var quantityInput = document.querySelector('input[name="quantity"]');
+    
+        // Ajoutez un gestionnaire d'événements pour le bouton de soustraction
+        btnMinus.addEventListener('click', function() {
+            // Vérifiez si la valeur actuelle est supérieure à 1
+            if (quantityInput.value > 1) {
+                // Soustrayez 1 de la valeur actuelle
+                quantityInput.value--;
+            }
+        });
+    
+        // Ajoutez un gestionnaire d'événements pour le bouton d'ajout
+        btnPlus.addEventListener('click', function() {
+            // Ajoutez 1 à la valeur actuelle
+            quantityInput.value++;
+        });
+    });
+    </script>
 @include('Home.layouts.footer')

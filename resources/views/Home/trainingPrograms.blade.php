@@ -404,7 +404,7 @@ a, a:hover {
           </li>
 					
 					<li class="tag__item play blue">
-						<a href="{{ route('showExercices',$program->id) }}"><i class="fas fa-play mr-1"></i>Play Episode</a>
+						<a href="{{ route('showExercices',$program->id) }}"><i class="fas fa-play mr-1"></i>Play Exercise</a>
 					</li>
 				</ul>
 			</div>
