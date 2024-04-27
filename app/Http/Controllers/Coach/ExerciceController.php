@@ -34,7 +34,10 @@ class ExerciceController extends Controller
     public function store(StoreExerciceRequest $request)
     {
         
-        Exercice::create($request->all());
+        $exercices= Exercice::create($request->all());
+        if ($request->hasFile('videos')) {
+            $exercices->addMediaFromRequest('videos')->toMediaCollection('videos');
+        }
         return redirect()->back();
     }
 
@@ -43,8 +46,8 @@ class ExerciceController extends Controller
      */
     public function show($id)
 {
-    $exercise = Exercice::findOrFail($id);
-    return view('exercises.show', compact('exercise'));
+    $exercice = Exercice::findOrFail($id);
+    return view('Home.exerciceDetails', compact('exercice'));
 }
 
     /**

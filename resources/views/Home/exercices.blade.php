@@ -250,7 +250,7 @@
             @endphp
             @foreach ($exercises as $exercise)
                 <li>
-                    <a href="{{ route('exercices.show', ['id' => $exercise->id]) }}"class="nav-item nav-link"><span class="course-number">{{ $count }}</span>{{ $exercise->title}}</a>
+                    <a href="{{ route('exercices.show',$exercise->id) }}"class="nav-item nav-link"><span class="course-number">{{ $count }}</span>{{ $exercise->title}}</a>
                 </li>
                 @php
                     $count++;
@@ -321,6 +321,11 @@
                                     <input type="number" class="form-control border"
                                         placeholder="Enter Number of Tickets" name="Number_Sets_Repetitions">
 
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label text-primary">Choose a Pic</label>
+                                    <input class="form-control bg-dark" type="file" id="formFile"
+                                         name='videos'>
                                 </div>
                                 <input type="hidden" class="form-control" name="training_program_id" value="{{ $trainingProgram->id }}">
                                 <div class="modal-footer">
